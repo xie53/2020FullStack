@@ -1,0 +1,64 @@
+<!-- <h3>Shipping Prices</h3>
+
+<div class="shipping-item" *ngFor="let inventory of itemsInventory | async">
+  <h4><span>{{ inventory.type }}</span></h4>
+  <span>{{ inventory.price | currency }}</span>
+</div> -->
+
+<!-- <div class="container"> -->
+<div class="container">
+
+<ul class="nav nav-tabs nav-justified justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/seller/addItem']">Add Sell Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/seller/inventory']">View Item Inventory</a>
+  </li>
+</ul>
+
+<!-- <div class="container1" *ngIf="itemsInventory"> -->
+<div class="container1 col-md-9" *ngFor="let inventory of itemsInventory | async">
+  <form class="form-horizontal">
+    <h3 class="mb-6 font-weight-normal">View Inventory</h3>
+      <div class="form-group">
+          <label for="searchName" class="col-sm-4 control-label inline-style font-position-right">Item Name:</label>
+          <div class="col-sm-8 inline-style ">
+            <input type="text" class="form-control" id="searchName" >
+          </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-lg btn-primary btn-block register-btn" type="submit">Search</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="itemName" class="col-sm-4 control-label inline-style font-position-right">Item Name:</label>
+        <div class="col-sm-8 inline-style ">
+          <input type="text" class="form-control" id="itemName" readonly [value]="inventory.itemName">
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="soldItems" class="col-sm-4 control-label inline-style font-position-right">Sold Items:</label>
+          <div class="col-sm-8 inline-style">
+            <input type="text" class="form-control" id="soldItems" readonly [value]="inventory.soldItems">
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="remainItems" class="col-sm-4 control-label inline-style font-position-right">Remain Items:</label>
+          <div class="col-sm-8 inline-style">
+            <input type="text" class="form-control" id="remainItems" readonly [value]="inventory.remainItems">
+          </div>
+      </div>
+
+      <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-lg btn-primary btn-block register-btn" type="submit">Return</button>
+          </div>
+      </div>
+  </form>
+
+</div>
+
+</div>
+
