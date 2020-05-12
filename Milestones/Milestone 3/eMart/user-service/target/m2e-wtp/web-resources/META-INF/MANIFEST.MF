@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: user-service
+Implementation-Version: POC
+Built-By: YongShengXie
+Implementation-Vendor-Id: com.ibm.business.user
+Build-Jdk: 1.8.0_221
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/eMart/user-service
+Created-By: Maven Integration for Eclipse
+
