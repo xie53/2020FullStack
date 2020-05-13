@@ -25,6 +25,7 @@ import com.ibm.business.user.response.BaseResponse;
 import com.ibm.business.user.response.EmptyResponse;
 import com.ibm.business.user.response.ErrorResponse;
 import com.ibm.business.user.service.BuyerService;
+import com.ibm.business.user.service.SellerService;
 import com.ibm.business.user.util.DateUtil;
 import com.ibm.business.user.util.StringUtil;
 import com.ibm.business.user.response.NormalResponse;
@@ -35,8 +36,8 @@ import com.ibm.business.user.response.NormalResponse;
  * @author ShiYan May 11, 2019 © Copyright IBM Corp. 2019 All rights reserved.
  **/
 
-@Service("authenticationService")
-public class SellerServiceImpl extends BaseServiceImpl implements BuyerService {
+@Service("sellerService")
+public class SellerServiceImpl extends BaseServiceImpl implements SellerService {
 
     private static final Logger logger = LogManager.getLogger(SellerServiceImpl.class);
 

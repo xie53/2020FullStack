@@ -19,7 +19,9 @@
 
  	<modules>
 		<module>user-service</module>
-	</modules>
+		<module>buyer-service</module>
+		<module>seller-service</module>
+ 	</modules>
 	
 	<build>
 	    <!-- 应与application.properties(或application.yml)中context-path保持一致 -->

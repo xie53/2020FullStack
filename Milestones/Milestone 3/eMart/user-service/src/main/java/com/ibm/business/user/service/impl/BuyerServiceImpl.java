@@ -35,7 +35,7 @@ import com.ibm.business.user.response.NormalResponse;
  * @author ShiYan May 11, 2019 © Copyright IBM Corp. 2019 All rights reserved.
  **/
 
-@Service("authenticationService")
+@Service("buyerService")
 public class BuyerServiceImpl extends BaseServiceImpl implements BuyerService {
 
     private static final Logger logger = LogManager.getLogger(BuyerServiceImpl.class);

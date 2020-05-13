@@ -22,6 +22,7 @@ import com.ibm.business.user.response.BaseResponse;
 import com.ibm.business.user.response.EmptyResponse;
 import com.ibm.business.user.response.ErrorResponse;
 import com.ibm.business.user.service.BuyerService;
+import com.ibm.business.user.service.SellerService;
 import com.ibm.business.user.constant.ApiConstant;
 
 import io.swagger.annotations.ApiImplicitParams;
@@ -30,22 +31,22 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value = ApiConstant.BUYER_INFO_PATH)
+@RequestMapping(value = ApiConstant.SELLER_INFO_PATH)
 public class SellerController extends BaseController {
 	private static final Logger logger = LogManager.getLogger(SellerController.class);
 
-	@Resource(name = "authenticationService")
-	private BuyerService buyerService;
+	@Resource(name = "sellerService")
+	private SellerService sellerService;
 
     /**
-     * Buyer Login Api
+     * Seller Login Api
      * @param userId
      * @param password
      * @param httpServletResponse HTTP
      * @return　HTTP
      */
-    @RequestMapping(value = "/buyerLogin", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Buyer Login Api", notes = "Buyer Login Api")
+    @RequestMapping(value = "/sellerLogin", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Seller Login Api", notes = "Seller Login Api")
     @ApiImplicitParams(value = {})
     @ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK"), 
@@ -56,7 +57,7 @@ public class SellerController extends BaseController {
 			@RequestParam(value="password",required = true) @NonNull String password,
             HttpServletResponse httpServletResponse) {
 
-    	BaseResponse<BuyerInfoRes> res = buyerService.buyerLogin(userName, password);
+    	BaseResponse<BuyerInfoRes> res = sellerService.buyerLogin(userName, password);
     	
 		setResponseStatus(res, httpServletResponse);
 		logger.info("### api result: " + res.getResult());
@@ -64,14 +65,14 @@ public class SellerController extends BaseController {
     }
 
     /**
-     * Buyer Signup Api
+     * Seller Signup Api
      * @param userId
      * @param password
      * @param httpServletResponse HTTP
      * @return　HTTP
      */
-    @RequestMapping(value = "/buyerSignup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Buyer Signup Api", notes = "Buyer Signup Api")
+    @RequestMapping(value = "/sellerSignup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Seller Signup Api", notes = "Seller Signup Api")
     @ApiImplicitParams(value = {})
     @ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK"), 
@@ -81,7 +82,7 @@ public class SellerController extends BaseController {
 			@RequestBody(required = true) @NonNull BuyerInfoRes buyerInfoRes,
             HttpServletResponse httpServletResponse) {
 
-    	BaseResponse<BuyerInfoRes> res = buyerService.buyerRegister(buyerInfoRes);
+    	BaseResponse<BuyerInfoRes> res = sellerService.buyerRegister(buyerInfoRes);
     			
 		setResponseStatus(res, httpServletResponse);
 		logger.info("### api result: " + res.getResult());
