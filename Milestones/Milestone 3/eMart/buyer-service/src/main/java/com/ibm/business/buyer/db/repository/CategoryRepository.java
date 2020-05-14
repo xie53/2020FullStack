@@ -5,10 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.ibm.business.buyer.db.entity.Category;
-import com.ibm.business.buyer.db.entity.Seller;
 
 @EnableJpaRepositories
-public interface CategoryRepository extends JpaRepository<Seller, String> {
+public interface CategoryRepository extends JpaRepository<Category, String> {
 
 	Optional<Category> findByCategory_name(String category_name);
 }

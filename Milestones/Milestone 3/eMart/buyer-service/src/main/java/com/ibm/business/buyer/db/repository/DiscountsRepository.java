@@ -4,10 +4,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.ibm.business.buyer.db.entity.SubCategory;
+import com.ibm.business.buyer.db.entity.Discounts;
 
 @EnableJpaRepositories
-public interface SubCategoryRepository extends JpaRepository<SubCategory, String> {
+public interface DiscountsRepository extends JpaRepository<Discounts, String> {
 
-	Optional<SubCategory> findBySubcategory_name(String subcategory_name);
+	Optional<Discounts> findById(String id);
 }
