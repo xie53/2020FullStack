@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.business.seller.bean.req.BuyerInfoRes;
+import com.ibm.business.seller.bean.req.ItemsInfoRes;
 import com.ibm.business.seller.constant.ApiConstant;
 import com.ibm.business.seller.db.entity.Buyer;
 import com.ibm.business.seller.response.BaseResponse;
@@ -39,25 +40,23 @@ public class SellerController extends BaseController {
 	private SellerService sellerService;
 
     /**
-     * Seller Login Api
-     * @param userId
-     * @param password
+     * View Item Stock Api
+     * @param itemName
      * @param httpServletResponse HTTP
      * @return　HTTP
      */
-    @RequestMapping(value = "/sellerLogin", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Seller Login Api", notes = "Seller Login Api")
+    @RequestMapping(value = "/viewStock", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "View Item Stock Api", notes = "View Item Stock Api")
     @ApiImplicitParams(value = {})
     @ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK"), 
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
-    public BaseResponse<BuyerInfoRes> getBuyerLoginInfo(
-			@RequestParam(value="userName",required = true) @NonNull String userName,
-			@RequestParam(value="password",required = true) @NonNull String password,
+    public BaseResponse<ItemsInfoRes> getViewStock(
+			@RequestParam(value="itemName",required = true) @NonNull String itemName,
             HttpServletResponse httpServletResponse) {
 
-    	BaseResponse<BuyerInfoRes> res = sellerService.buyerLogin(userName, password);
+    	BaseResponse<ItemsInfoRes> res = sellerService.getViewStock(itemName);
     	
 		setResponseStatus(res, httpServletResponse);
 		logger.info("### api result: " + res.getResult());
@@ -65,24 +64,23 @@ public class SellerController extends BaseController {
     }
 
     /**
-     * Seller Signup Api
-     * @param userId
-     * @param password
+     * Seller Add Items Api
+     * @param buyerInfoRes
      * @param httpServletResponse HTTP
      * @return　HTTP
      */
-    @RequestMapping(value = "/sellerSignup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Seller Signup Api", notes = "Seller Signup Api")
+    @RequestMapping(value = "/addItems", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Seller Add Items Api", notes = "Seller Add Items Api")
     @ApiImplicitParams(value = {})
     @ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK"), 
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
-    public BaseResponse<BuyerInfoRes> postBuyerRegisterInfo(
-			@RequestBody(required = true) @NonNull BuyerInfoRes buyerInfoRes,
+    public BaseResponse<ItemsInfoRes> postAddItems(
+			@RequestBody(required = true) @NonNull ItemsInfoRes itemsInfoRes,
             HttpServletResponse httpServletResponse) {
 
-    	BaseResponse<BuyerInfoRes> res = sellerService.buyerRegister(buyerInfoRes);
+    	BaseResponse<ItemsInfoRes> res = sellerService.postAddItems(itemsInfoRes);
     			
 		setResponseStatus(res, httpServletResponse);
 		logger.info("### api result: " + res.getResult());

@@ -1,4 +1,4 @@
-package com.ibm.business.buyer.db.entity;
+package com.ibm.business.seller.db.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

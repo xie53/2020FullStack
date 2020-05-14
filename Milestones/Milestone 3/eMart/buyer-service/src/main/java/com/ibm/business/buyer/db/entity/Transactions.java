@@ -20,16 +20,16 @@ public class Transactions implements Serializable {
 	private long id;
 
 	@Column(name="BUYER_ID")
-	private long buyer_id;
+	private long buyerId;
 
 	@Column(name="SELLER_ID")
-	private long seller_id;
+	private long sellerId;
 
 	@Column(name="TRANSACTION_TYPE")
-	private String transactions_type;
+	private String transactionsType;
 
 	@Column(name="DATE_TIME")
-	private Timestamp date_Time;
+	private Timestamp dateTime;
 
 	@Column(name="REMARKS")
 	private String remarks;
@@ -45,36 +45,36 @@ public class Transactions implements Serializable {
 		this.id = id;
 	}
 
-	public long getBuyer_id() {
-		return buyer_id;
+	public long getBuyerId() {
+		return buyerId;
 	}
 
-	public void setBuyer_id(long buyer_id) {
-		this.buyer_id = buyer_id;
+	public void setBuyerId(long buyerId) {
+		this.buyerId = buyerId;
 	}
 
-	public long getSeller_id() {
-		return seller_id;
+	public long getSellerId() {
+		return sellerId;
 	}
 
-	public void setSeller_id(long seller_id) {
-		this.seller_id = seller_id;
+	public void setSellerId(long sellerId) {
+		this.sellerId = sellerId;
 	}
 
-	public String getTransactions_type() {
-		return transactions_type;
+	public String getTransactionsType() {
+		return transactionsType;
 	}
 
-	public void setTransactions_type(String transactions_type) {
-		this.transactions_type = transactions_type;
+	public void setTransactionsType(String transactionsType) {
+		this.transactionsType = transactionsType;
 	}
 
-	public Timestamp getDate_Time() {
-		return date_Time;
+	public Timestamp getDateTime() {
+		return dateTime;
 	}
 
-	public void setDate_Time(Timestamp date_Time) {
-		this.date_Time = date_Time;
+	public void setDateTime(Timestamp dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public String getRemarks() {

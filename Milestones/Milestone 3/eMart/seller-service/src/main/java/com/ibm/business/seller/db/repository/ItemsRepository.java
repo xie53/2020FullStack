@@ -1,10 +1,10 @@
-package com.ibm.business.buyer.db.repository;
+package com.ibm.business.seller.db.repository;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.ibm.business.buyer.db.entity.Items;
+import com.ibm.business.seller.db.entity.Items;
 
 @EnableJpaRepositories
 public interface ItemsRepository extends JpaRepository<Items, String> {

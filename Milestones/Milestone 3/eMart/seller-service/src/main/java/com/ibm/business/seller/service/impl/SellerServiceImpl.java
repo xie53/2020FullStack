@@ -17,15 +17,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ibm.business.seller.bean.req.BuyerInfoRes;
+import com.ibm.business.seller.bean.req.ItemsInfoRes;
 import com.ibm.business.seller.bean.res.HeaderInfoRes;
 import com.ibm.business.seller.constant.ErrorConstant;
 import com.ibm.business.seller.db.entity.Buyer;
+import com.ibm.business.seller.db.entity.Items;
 import com.ibm.business.seller.db.repository.BuyerRepository;
+import com.ibm.business.seller.db.repository.ItemsRepository;
 import com.ibm.business.seller.response.BaseResponse;
 import com.ibm.business.seller.response.EmptyResponse;
 import com.ibm.business.seller.response.ErrorResponse;
 import com.ibm.business.seller.response.NormalResponse;
-import com.ibm.business.seller.service.BuyerService;
 import com.ibm.business.seller.service.SellerService;
 import com.ibm.business.seller.util.DateUtil;
 import com.ibm.business.seller.util.StringUtil;
@@ -49,52 +51,68 @@ public class SellerServiceImpl extends BaseServiceImpl implements SellerService 
 
     @Autowired
     private BuyerRepository buyerRepository;
+
+    @Autowired
+    private ItemsRepository itemsRepository;
     
     /**
      * Buyer Login API
      */
-    public BaseResponse<BuyerInfoRes> buyerLogin(String userName, String password) {
-    	BuyerInfoRes buyerInfoRes = new BuyerInfoRes();
+    public BaseResponse<ItemsInfoRes> getViewStock(String itemName) {
+    	ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
 
-    	Optional<Buyer> buyerList = buyerRepository.findByUserNameAndPassword(userName, password);
+    	Optional<Items> itemList = itemsRepository.findByItemName(itemName);
     	
-    	Buyer buyer = null;
-    	if (!buyerList.isPresent()) {
+    	Items item = null;
+    	if (!itemList.isPresent()) {
     		return new ErrorResponse<>(ErrorConstant.FAIL_TO_GET_USER_INFO);
     	} else {
-    		buyer = buyerList.get();
+    		item = itemList.get();
         }
-    	buyerInfoRes.setUserName(buyer.getUserName());
-    	buyerInfoRes.setEmail_id(buyer.getEmail_id());
-    	buyerInfoRes.setContact_number(buyer.getContact_number());
-    	buyerInfoRes.setCreateDate(buyer.getCreateDate());
 
-		return new NormalResponse<BuyerInfoRes>(buyerInfoRes);
+    	itemsInfoRes.setItemName(item.getItemName());
+    	itemsInfoRes.setStockNumber(item.getStockNumber());
+    	itemsInfoRes.setRemainNumber(item.getStockNumber());
+
+		return new NormalResponse<ItemsInfoRes>(itemsInfoRes);
     }
     
     /**
-     * Buyer Register API
+     * Seller Add Items Api
      */
-    public EmptyResponse<BuyerInfoRes> buyerRegister(BuyerInfoRes buyerInfoRes) {
-    	Buyer buyer = new Buyer();
+    public EmptyResponse<ItemsInfoRes> postAddItems(ItemsInfoRes itemsInfoRes) {
+    	Items item = new Items();
 
-		if(buyerInfoRes != null) {
-	        Timestamp createdDate = DateUtil.getCurrentTimestap();
-			buyer.setUserName(buyerInfoRes.getUserName());
-			buyer.setPassword(buyerInfoRes.getPassword());
-			buyer.setEmail_id(buyerInfoRes.getEmail_id());
-			buyer.setContact_number(buyerInfoRes.getContact_number());
-			buyer.setCreateDate(createdDate);
+		if(itemsInfoRes != null) {
+			String itemId = UUID.randomUUID().toString();
+			item.setId(itemId);
+			item.setItemName(itemsInfoRes.getItemName());
+			item.setCategoryId(Long.valueOf(itemsInfoRes.getCategoryId()));
+			item.setSubcategoryId(Long.valueOf(itemsInfoRes.getSubcategoryId()));
+			item.setPrice(itemsInfoRes.getPrice());
+			item.setStockNumber(itemsInfoRes.getStockNumber());
+			item.setRemainNumber(itemsInfoRes.getStockNumber());
+			item.setDescription(itemsInfoRes.getDescription());
+			item.setRemarks(itemsInfoRes.getRemarks());
 		}
 
-    	buyerRepository.save(buyer);
-    	Optional<Buyer> buyerList = buyerRepository.findByUserName(buyerInfoRes.getUserName());
-    	
-    	if (!buyerList.isPresent()) {
-    		return new EmptyResponse<BuyerInfoRes>("NG");
+		item = itemsRepository.saveAndFlush(item);
+
+    	if ("".equals(item.getId())) {
+    		return new EmptyResponse<ItemsInfoRes>("NG");
     	}
 
-		return new EmptyResponse<BuyerInfoRes>("OK");
+		return new EmptyResponse<ItemsInfoRes>("OK");
+		
+//		logger.info("### postAddItems api result: " + itemsRepository.saveAndFlush(item));
+//		itemsRepository.saveAndFlush(item);
+//    	Optional<Items> buyerList = itemsRepository.findById(item.getId());
+//    	
+//    	if (!buyerList.isPresent()) {
+//    		return new EmptyResponse<ItemsInfoRes>("NG");
+//    	}
+//
+//		return new EmptyResponse<ItemsInfoRes>("OK");
     }
 
 }

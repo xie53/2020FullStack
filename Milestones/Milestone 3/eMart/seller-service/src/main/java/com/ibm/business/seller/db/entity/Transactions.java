@@ -1,4 +1,4 @@
-package com.ibm.business.buyer.db.entity;
+package com.ibm.business.seller.db.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -10,9 +10,9 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="PurchaseHistory")
-@NamedQuery(name="PurchaseHistory.findAll", query="SELECT a FROM PurchaseHistory a")
-public class PurchaseHistory implements Serializable {
+@Table(name="T_TRANSACTIONS")
+@NamedQuery(name="Transactions.findAll", query="SELECT a FROM Transactions a")
+public class Transactions implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,14 +25,8 @@ public class PurchaseHistory implements Serializable {
 	@Column(name="SELLER_ID")
 	private long sellerId;
 
-	@Column(name="TRANSACTION_ID")
-	private long transactionId;
-
-	@Column(name="ITEM_ID")
-	private long itemId;
-
-	@Column(name="NUMBER_OF_ITEMS")
-	private int numberOfItems;
+	@Column(name="TRANSACTION_TYPE")
+	private String transactionsType;
 
 	@Column(name="DATE_TIME")
 	private Timestamp dateTime;
@@ -40,7 +34,7 @@ public class PurchaseHistory implements Serializable {
 	@Column(name="REMARKS")
 	private String remarks;
 
-	public PurchaseHistory() {
+	public Transactions() {
 	}
 
 	public long getId() {
@@ -67,28 +61,12 @@ public class PurchaseHistory implements Serializable {
 		this.sellerId = sellerId;
 	}
 
-	public long getTransactionId() {
-		return transactionId;
+	public String getTransactionsType() {
+		return transactionsType;
 	}
 
-	public void setTransactionId(long transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	public long getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(long itemId) {
-		this.itemId = itemId;
-	}
-
-	public int getNumberOfItems() {
-		return numberOfItems;
-	}
-
-	public void setNumberOfItems(int numberOfItems) {
-		this.numberOfItems = numberOfItems;
+	public void setTransactionsType(String transactionsType) {
+		this.transactionsType = transactionsType;
 	}
 
 	public Timestamp getDateTime() {

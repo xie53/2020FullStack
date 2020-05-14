@@ -1,9 +1,6 @@
 package com.ibm.business.seller.service;
 
-import org.springframework.http.ResponseEntity;
-
-import com.ibm.business.seller.bean.req.BuyerInfoRes;
-import com.ibm.business.seller.db.entity.Seller;
+import com.ibm.business.seller.bean.req.ItemsInfoRes;
 import com.ibm.business.seller.response.BaseResponse;
 import com.ibm.business.seller.response.EmptyResponse;
 
@@ -13,22 +10,12 @@ import com.ibm.business.seller.response.EmptyResponse;
 public interface SellerService {
 
     /**
-     * Buyer Login API
+     * View Item Stock Api
      */
-    public BaseResponse<BuyerInfoRes> buyerLogin(String userName, String password);
+    public BaseResponse<ItemsInfoRes> getViewStock(String itemName);
 
-//    /**
-//     * Seller Login API
-//     */
-//    public ResponseEntity<Seller> sellerLogin(String userName, String password);
-//
     /**
-     * Buyer Register API
+     * Seller Add Items Api
      */
-    public EmptyResponse<BuyerInfoRes> buyerRegister(BuyerInfoRes buyerInfoRes);
-//
-//    /**
-//     * Seller Register API
-//     */
-//    public void sellerRegister(String userName, String p);
+    public EmptyResponse<ItemsInfoRes> postAddItems(ItemsInfoRes itemsInfoRes);
 }
