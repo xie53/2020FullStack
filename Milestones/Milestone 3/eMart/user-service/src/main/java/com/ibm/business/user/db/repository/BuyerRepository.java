@@ -9,5 +9,8 @@ import com.ibm.business.user.db.entity.Buyer;
 
 @EnableJpaRepositories
 public interface BuyerRepository extends JpaRepository<Buyer, String> {
+
+	Optional<Buyer> findByUserNameAndPassword(String userName, String password);
+
 	Optional<Buyer> findByUserName(String userName);
 }

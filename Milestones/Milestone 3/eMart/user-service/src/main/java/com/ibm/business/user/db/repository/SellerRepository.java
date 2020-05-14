@@ -8,5 +8,8 @@ import com.ibm.business.user.db.entity.Seller;
 
 @EnableJpaRepositories
 public interface SellerRepository extends JpaRepository<Seller, String> {
+
+	Optional<Seller> findByUserNameAndPassword(String userName, String password);
+
 	Optional<Seller> findByUserName(String userName);
 }

@@ -4,12 +4,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.ibm.business.buyer.db.entity.Category;
 import com.ibm.business.buyer.db.entity.Seller;
 
 @EnableJpaRepositories
-public interface SellerRepository extends JpaRepository<Seller, String> {
+public interface CategoryRepository extends JpaRepository<Seller, String> {
 
-	Optional<Seller> findByUserNameAndPassword(String userName, String password);
-
-	Optional<Seller> findByUserName(String userName);
+	Optional<Category> findByCategory_name(String category_name);
 }

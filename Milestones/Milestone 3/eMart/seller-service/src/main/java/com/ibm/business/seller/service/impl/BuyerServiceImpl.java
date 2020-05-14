@@ -55,7 +55,7 @@ public class BuyerServiceImpl extends BaseServiceImpl implements BuyerService {
     public BaseResponse<BuyerInfoRes> buyerLogin(String userName, String password) {
     	BuyerInfoRes buyerInfoRes = new BuyerInfoRes();
 
-    	Optional<Buyer> buyerList = buyerRepository.findByUserName(userName);
+    	Optional<Buyer> buyerList = buyerRepository.findByUserNameAndPassword(userName, password);
     	
     	Buyer buyer = null;
     	if (!buyerList.isPresent()) {
