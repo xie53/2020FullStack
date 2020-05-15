@@ -38,14 +38,14 @@ public class BuyerController extends BaseController {
 	private BuyerService buyerService;
 
     /**
-     * Buyer Login Api
+     * Search Items Api
      * @param userId
      * @param password
      * @param httpServletResponse HTTP
      * @return　HTTP
      */
-    @RequestMapping(value = "/buyerLogin", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Buyer Login Api", notes = "Buyer Login Api")
+    @RequestMapping(value = "/searchItems", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Search Items Api", notes = "Search Items Api")
     @ApiImplicitParams(value = {})
     @ApiResponses(value = {
 			@ApiResponse(code = 200, message = "OK"), 

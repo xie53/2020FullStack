@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-
 /**
  * The persistent class for the T_BUYER database table.
  * 
@@ -26,10 +25,10 @@ public class Buyer implements Serializable {
 	private String password;
 
 	@Column(name="EMAILID")
-	private String email_id;
+	private String emailId;
 
 	@Column(name="CONTACT_NUMBER")
-	private String contact_number;
+	private String contactNumber;
 
 	@Column(name="CREATE_DATE")
 	private Timestamp createDate;
@@ -61,20 +60,20 @@ public class Buyer implements Serializable {
 		this.password = password;
 	}
 
-	public String getEmail_id() {
-		return email_id;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	public String getContact_number() {
-		return contact_number;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setContact_number(String contact_number) {
-		this.contact_number = contact_number;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
 	public Timestamp getCreateDate() {

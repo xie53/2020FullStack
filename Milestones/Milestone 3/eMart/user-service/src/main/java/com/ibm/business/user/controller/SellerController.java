@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.business.user.bean.req.BuyerInfoRes;
+import com.ibm.business.user.bean.req.SellerInfoRes;
 import com.ibm.business.user.db.entity.Buyer;
 import com.ibm.business.user.response.BaseResponse;
 import com.ibm.business.user.response.EmptyResponse;
@@ -52,12 +53,12 @@ public class SellerController extends BaseController {
 			@ApiResponse(code = 200, message = "OK"), 
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
-    public BaseResponse<BuyerInfoRes> getBuyerLoginInfo(
+    public BaseResponse<SellerInfoRes> getBuyerLoginInfo(
 			@RequestParam(value="userName",required = true) @NonNull String userName,
 			@RequestParam(value="password",required = true) @NonNull String password,
             HttpServletResponse httpServletResponse) {
 
-    	BaseResponse<BuyerInfoRes> res = sellerService.buyerLogin(userName, password);
+    	BaseResponse<SellerInfoRes> res = sellerService.sellerLogin(userName, password);
     	
 		setResponseStatus(res, httpServletResponse);
 		logger.info("### api result: " + res.getResult());
@@ -78,11 +79,11 @@ public class SellerController extends BaseController {
 			@ApiResponse(code = 200, message = "OK"), 
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
-    public BaseResponse<BuyerInfoRes> postBuyerRegisterInfo(
-			@RequestBody(required = true) @NonNull BuyerInfoRes buyerInfoRes,
+    public BaseResponse<SellerInfoRes> postBuyerRegisterInfo(
+			@RequestBody(required = true) @NonNull SellerInfoRes sellerInfoRes,
             HttpServletResponse httpServletResponse) {
 
-    	BaseResponse<BuyerInfoRes> res = sellerService.buyerRegister(buyerInfoRes);
+    	BaseResponse<SellerInfoRes> res = sellerService.sellerRegister(sellerInfoRes);
     			
 		setResponseStatus(res, httpServletResponse);
 		logger.info("### api result: " + res.getResult());

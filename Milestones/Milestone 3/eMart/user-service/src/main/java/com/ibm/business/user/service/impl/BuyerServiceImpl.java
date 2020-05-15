@@ -63,9 +63,10 @@ public class BuyerServiceImpl extends BaseServiceImpl implements BuyerService {
     	} else {
     		buyer = buyerList.get();
         }
+    	buyerInfoRes.setId(Long.toString(buyer.getId()));
     	buyerInfoRes.setUserName(buyer.getUserName());
-    	buyerInfoRes.setEmail_id(buyer.getEmail_id());
-    	buyerInfoRes.setContact_number(buyer.getContact_number());
+    	buyerInfoRes.setEmailId(buyer.getEmailId());
+    	buyerInfoRes.setContactNumber(buyer.getContactNumber());
     	buyerInfoRes.setCreateDate(buyer.getCreateDate());
 
 		return new NormalResponse<BuyerInfoRes>(buyerInfoRes);
@@ -81,19 +82,27 @@ public class BuyerServiceImpl extends BaseServiceImpl implements BuyerService {
 	        Timestamp createdDate = DateUtil.getCurrentTimestap();
 			buyer.setUserName(buyerInfoRes.getUserName());
 			buyer.setPassword(buyerInfoRes.getPassword());
-			buyer.setEmail_id(buyerInfoRes.getEmail_id());
-			buyer.setContact_number(buyerInfoRes.getContact_number());
+			buyer.setEmailId(buyerInfoRes.getEmailId());
+			buyer.setContactNumber(buyerInfoRes.getContactNumber());
 			buyer.setCreateDate(createdDate);
 		}
 
-    	buyerRepository.save(buyer);
-    	Optional<Buyer> buyerList = buyerRepository.findByUserName(buyerInfoRes.getUserName());
-    	
-    	if (!buyerList.isPresent()) {
+		buyer = buyerRepository.saveAndFlush(buyer);
+
+    	if ("".equals(buyer.getId())) {
     		return new EmptyResponse<BuyerInfoRes>("NG");
     	}
 
 		return new EmptyResponse<BuyerInfoRes>("OK");
+
+//    	buyerRepository.save(buyer);
+//    	Optional<Buyer> buyerList = buyerRepository.findByUserName(buyerInfoRes.getUserName());
+//    	
+//    	if (!buyerList.isPresent()) {
+//    		return new EmptyResponse<BuyerInfoRes>("NG");
+//    	}
+//
+//		return new EmptyResponse<BuyerInfoRes>("OK");
     }
 
 }

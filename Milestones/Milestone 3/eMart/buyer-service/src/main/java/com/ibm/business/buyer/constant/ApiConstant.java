@@ -1,11 +1,5 @@
 package com.ibm.business.buyer.constant;
 
-/**
-* BFFDigital
-* @author ShiYan May 11, 2019
-* © Copyright IBM Corp. 2019 All rights reserved.
-**/
-
 public class ApiConstant {
 	
 	public static final String STATUS_OK = "OK";

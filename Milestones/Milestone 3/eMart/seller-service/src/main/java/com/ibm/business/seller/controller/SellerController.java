@@ -23,7 +23,6 @@ import com.ibm.business.seller.db.entity.Buyer;
 import com.ibm.business.seller.response.BaseResponse;
 import com.ibm.business.seller.response.EmptyResponse;
 import com.ibm.business.seller.response.ErrorResponse;
-import com.ibm.business.seller.service.BuyerService;
 import com.ibm.business.seller.service.SellerService;
 
 import io.swagger.annotations.ApiImplicitParams;

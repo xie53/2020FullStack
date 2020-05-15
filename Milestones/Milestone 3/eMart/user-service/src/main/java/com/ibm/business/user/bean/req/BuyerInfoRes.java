@@ -4,16 +4,26 @@ import java.sql.Timestamp;
 
 public class BuyerInfoRes {
 
+	private String id;
+
 	private String userName;
 
 	private String password;
 
-	private String email_id;
+	private String emailId;
 
-	private String contact_number;
+	private String contactNumber;
 
 	private Timestamp createDate;
 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -30,20 +40,20 @@ public class BuyerInfoRes {
 		this.password = password;
 	}
 
-	public String getEmail_id() {
-		return email_id;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	public String getContact_number() {
-		return contact_number;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setContact_number(String contact_number) {
-		this.contact_number = contact_number;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
 	public Timestamp getCreateDate() {
@@ -56,7 +66,7 @@ public class BuyerInfoRes {
 
 	@Override
 	public String toString() {
-		return "BuyerInfoRes [userName=" + userName + ", password=" + password + ", email_id=" + email_id + 
-				", contact_number=" + contact_number + ", createDate=" + createDate + "]";
+		return "BuyerInfoRes [id=" + id + ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + 
+				", contactNumber=" + contactNumber + ", createDate=" + createDate + "]";
 	}
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-
 /**
  * The persistent class for the T_SELLER database table.
  * 
@@ -32,19 +31,19 @@ public class Seller implements Serializable {
 	private String gstin;
 
 	@Column(name="BRIEF_COMPANY")
-	private String brief_company;
+	private String briefCompany;
 
 	@Column(name="POSTAL_ADDRESS")
-	private String postal_address;
+	private String postalAddress;
 
 	@Column(name="WEBSITE")
 	private String website;
 
 	@Column(name="EMAILID")
-	private String email_id;
+	private String emailId;
 
 	@Column(name="CONTACT_NUMBER")
-	private String contact_number;
+	private String contactNumber;
 
 	@Column(name="CREATE_DATE")
 	private Timestamp createDate;
@@ -92,20 +91,20 @@ public class Seller implements Serializable {
 		this.gstin = gstin;
 	}
 
-	public String getBrief_company() {
-		return brief_company;
+	public String getBriefCompany() {
+		return briefCompany;
 	}
 
-	public void setBrief_company(String brief_company) {
-		this.brief_company = brief_company;
+	public void setBriefCompany(String briefCompany) {
+		this.briefCompany = briefCompany;
 	}
 
-	public String getPostal_address() {
-		return postal_address;
+	public String getPostalAddress() {
+		return postalAddress;
 	}
 
-	public void setPostal_address(String postal_address) {
-		this.postal_address = postal_address;
+	public void setPostalAddress(String postalAddress) {
+		this.postalAddress = postalAddress;
 	}
 
 	public String getWebsite() {
@@ -116,20 +115,20 @@ public class Seller implements Serializable {
 		this.website = website;
 	}
 
-	public String getEmail_id() {
-		return email_id;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	public String getContact_number() {
-		return contact_number;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setContact_number(String contact_number) {
-		this.contact_number = contact_number;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
 	public Timestamp getCreateDate() {
