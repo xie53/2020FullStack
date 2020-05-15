@@ -1,7 +1,9 @@
 package com.ibm.business.buyer.service.impl;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,10 +19,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ibm.business.buyer.bean.req.BuyerInfoRes;
+import com.ibm.business.buyer.bean.req.ItemsInfoListRes;
+import com.ibm.business.buyer.bean.req.ItemsInfoRes;
 import com.ibm.business.buyer.bean.res.HeaderInfoRes;
 import com.ibm.business.buyer.constant.ErrorConstant;
 import com.ibm.business.buyer.db.entity.Buyer;
+import com.ibm.business.buyer.db.entity.Items;
 import com.ibm.business.buyer.db.repository.BuyerRepository;
+import com.ibm.business.buyer.db.repository.ItemsRepository;
 import com.ibm.business.buyer.response.BaseResponse;
 import com.ibm.business.buyer.response.EmptyResponse;
 import com.ibm.business.buyer.response.ErrorResponse;
@@ -47,53 +53,42 @@ public class BuyerServiceImpl extends BaseServiceImpl implements BuyerService {
     EntityManager entityManager;
 
     @Autowired
-    private BuyerRepository buyerRepository;
+    private ItemsRepository itemsRepository;
     
     /**
      * Buyer Login API
      */
-    public BaseResponse<BuyerInfoRes> buyerLogin(String userName, String password) {
-    	BuyerInfoRes buyerInfoRes = new BuyerInfoRes();
+    public BaseResponse<ItemsInfoListRes> searchItemsInfo(String itemName, String category, String subCategory,
+			Double startPrice, Double endPrice) {
+    	List<ItemsInfoRes> itemInformationList = new ArrayList<>();
+    	ItemsInfoListRes itemsInfoListRes = new ItemsInfoListRes();
 
-    	Optional<Buyer> buyerList = buyerRepository.findByUserNameAndPassword(userName, password);
+    	List<Items> itemList = itemsRepository.findItemInfo(itemName, category, subCategory, startPrice, endPrice);
+//    	Optional<Items> itemList = itemsRepository.findItemInfo(itemName, category, subCategory, startPrice, endPrice);
     	
-    	Buyer buyer = null;
-    	if (!buyerList.isPresent()) {
+    	Items item = null;
+    	ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
+    	if (itemList.size() == 0) {
     		return new ErrorResponse<>(ErrorConstant.FAIL_TO_GET_USER_INFO);
     	} else {
-    		buyer = buyerList.get();
+    		for(int i = 0; i < itemList.size(); i++) {
+    			item = itemList.get(i);
+    			itemsInfoRes.setItemName(item.getItemName());
+    			itemsInfoRes.setCategoryId(item.getCategoryId());
+    			itemsInfoRes.setSubcategoryId(item.getSubcategoryId());
+    			itemsInfoRes.setPrice(item.getPrice());
+    			itemsInfoRes.setDescription(item.getDescription());
+    			itemsInfoRes.setStockNumber(item.getStockNumber());
+    			itemsInfoRes.setRemainNumber(item.getRemainNumber());
+    			itemsInfoRes.setRemarks(item.getRemarks());
+    			itemInformationList.add(itemsInfoRes);
+    		}
         }
-    	buyerInfoRes.setUserName(buyer.getUserName());
-    	buyerInfoRes.setEmail_id(buyer.getEmail_id());
-    	buyerInfoRes.setContact_number(buyer.getContact_number());
-    	buyerInfoRes.setCreateDate(buyer.getCreateDate());
 
-		return new NormalResponse<BuyerInfoRes>(buyerInfoRes);
-    }
-    
-    /**
-     * Buyer Register API
-     */
-    public EmptyResponse<BuyerInfoRes> buyerRegister(BuyerInfoRes buyerInfoRes) {
-    	Buyer buyer = new Buyer();
+    	logger.info("### api result: " + itemInformationList);
+    	itemsInfoListRes.setItemInformationList(itemInformationList);
 
-		if(buyerInfoRes != null) {
-	        Timestamp createdDate = DateUtil.getCurrentTimestap();
-			buyer.setUserName(buyerInfoRes.getUserName());
-			buyer.setPassword(buyerInfoRes.getPassword());
-			buyer.setEmail_id(buyerInfoRes.getEmail_id());
-			buyer.setContact_number(buyerInfoRes.getContact_number());
-			buyer.setCreateDate(createdDate);
-		}
-
-    	buyerRepository.save(buyer);
-    	Optional<Buyer> buyerList = buyerRepository.findByUserName(buyerInfoRes.getUserName());
-    	
-    	if (!buyerList.isPresent()) {
-    		return new EmptyResponse<BuyerInfoRes>("NG");
-    	}
-
-		return new EmptyResponse<BuyerInfoRes>("OK");
+		return new NormalResponse<ItemsInfoListRes>(itemsInfoListRes);
     }
 
 }

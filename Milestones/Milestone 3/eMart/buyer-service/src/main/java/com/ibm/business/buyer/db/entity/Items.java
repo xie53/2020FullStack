@@ -19,10 +19,10 @@ public class Items implements Serializable {
 	private String id;
 
 	@Column(name="CATEGORY_ID")
-	private long categoryId;
+	private String categoryId;
 
 	@Column(name="SUBCATEGORY_ID")
-	private long subcategoryId;
+	private String subcategoryId;
 
 	@Column(name="PRICE")
 	private double price;
@@ -53,19 +53,19 @@ public class Items implements Serializable {
 		this.id = id;
 	}
 
-	public long getCategoryId() {
+	public String getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(long categoryId) {
+	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
 
-	public long getSubcategoryId() {
+	public String getSubcategoryId() {
 		return subcategoryId;
 	}
 
-	public void setSubcategoryId(long subcategoryId) {
+	public void setSubcategoryId(String subcategoryId) {
 		this.subcategoryId = subcategoryId;
 	}
 

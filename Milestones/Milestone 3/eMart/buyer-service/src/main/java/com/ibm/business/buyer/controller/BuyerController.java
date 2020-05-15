@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.business.buyer.bean.req.BuyerInfoRes;
+import com.ibm.business.buyer.bean.req.ItemsInfoListRes;
 import com.ibm.business.buyer.constant.ApiConstant;
 import com.ibm.business.buyer.db.entity.Buyer;
 import com.ibm.business.buyer.response.BaseResponse;
@@ -39,8 +40,11 @@ public class BuyerController extends BaseController {
 
     /**
      * Search Items Api
-     * @param userId
-     * @param password
+     * @param itemName
+     * @param category
+     * @param subCategory
+     * @param startPrice
+     * @param endPrice
      * @param httpServletResponse HTTP
      * @return　HTTP
      */
@@ -51,41 +55,20 @@ public class BuyerController extends BaseController {
 			@ApiResponse(code = 200, message = "OK"), 
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
-    public BaseResponse<BuyerInfoRes> getBuyerLoginInfo(
-			@RequestParam(value="userName",required = true) @NonNull String userName,
-			@RequestParam(value="password",required = true) @NonNull String password,
+    public BaseResponse<ItemsInfoListRes> searchItemsInfo(
+			@RequestParam(value="itemName",required = false) String itemName,
+			@RequestParam(value="category",required = false) String category,
+			@RequestParam(value="subCategory",required = false) String subCategory,
+			@RequestParam(value="startPrice",required = false) Double startPrice,
+			@RequestParam(value="endPrice",required = false) Double endPrice,
             HttpServletResponse httpServletResponse) {
 
-    	BaseResponse<BuyerInfoRes> res = buyerService.buyerLogin(userName, password);
+    	BaseResponse<ItemsInfoListRes> res = buyerService.searchItemsInfo(itemName, category, subCategory, startPrice, endPrice);
     	
 		setResponseStatus(res, httpServletResponse);
 		logger.info("### api result: " + res.getResult());
 		return res;
     }
 
-    /**
-     * Buyer Signup Api
-     * @param userId
-     * @param password
-     * @param httpServletResponse HTTP
-     * @return　HTTP
-     */
-    @RequestMapping(value = "/buyerSignup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Buyer Signup Api", notes = "Buyer Signup Api")
-    @ApiImplicitParams(value = {})
-    @ApiResponses(value = {
-			@ApiResponse(code = 200, message = "OK"), 
-			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
-			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
-    public BaseResponse<BuyerInfoRes> postBuyerRegisterInfo(
-			@RequestBody(required = true) @NonNull BuyerInfoRes buyerInfoRes,
-            HttpServletResponse httpServletResponse) {
-
-    	BaseResponse<BuyerInfoRes> res = buyerService.buyerRegister(buyerInfoRes);
-    			
-		setResponseStatus(res, httpServletResponse);
-		logger.info("### api result: " + res.getResult());
-		return res;
-    }
 }
 
