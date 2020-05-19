@@ -16,8 +16,11 @@ public interface ItemsRepository extends JpaRepository<Items, String> {
 
 	Optional<Items> findByItemName(String itemName);
 
-	@Query(value = "SELECT item FROM Items AS item WHERE item.itemName LIKE CONCAT('%',:itemName,'%')"
-					+ " AND item.categoryId = :category"
+	@Query(value = "SELECT item FROM Items AS item WHERE "
+//					+ "IF(:itemName is not null, item.itemName LIKE CONCAT('%',:itemName,'%'), 1 = 1)"
+					+ " item.itemName LIKE CONCAT('%',:itemName,'%')"
+					+ " AND IF (:category is not null, item.categoryId = :category , 1 = 1) "
+//					+ " AND item.categoryId = :category"
 					+ " AND item.subcategoryId = :subCategory"
 					+ " AND item.price >= :startPrice"
 					+ " AND item.price <= :endPrice")

@@ -21,6 +21,8 @@
 		<module>user-service</module>
 		<module>buyer-service</module>
 		<module>seller-service</module>
+		<module>zuul-service</module>
+		<module>eureka-service</module>
  	</modules>
 	
 	<build>
