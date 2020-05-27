@@ -1,0 +1,16 @@
+#Folders
+/logs/
+/target/
+/src/main/webapp/
+/src/test/
+/.settings/
+
+#Files
+*.DS_Store
+/.classpath
+/.factorypath
+/.project
+generatorConfig.xml
+.settings
+.sts4-cache
+*.iml

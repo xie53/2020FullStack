@@ -1,0 +1,91 @@
+.div-signin {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-top: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  .form-signin h3 {
+    margin-bottom: 20px;
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .form-signin .btn {
+    margin-top: 10px;
+  }
+
+.radio-role {
+    position: relative;
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.radio-role input {
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-bottom: 1px;
+    /* 前面三行代码是为了让radio单选按钮与文字对齐 */
+    width: 20px;
+    height: 20px;
+    appearance: none;/*清楚默认样式*/
+    -webkit-appearance: none;
+    opacity: 0;
+    outline: none;
+    /* 注意不能设置为display:none*/
+}
+
+.radio-role label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    /*注意层级关系，如果不把label层级设为最低，会遮挡住input而不能单选*/
+    width: 20px;
+    height: 20px;
+    border: 1px solid #3582E9;
+    border-radius: 100%;
+}
+
+.radio-role input:checked+label {
+  background: #3582E9;
+}
+
+.radio-role input:checked+label::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 2px;
+  width: 5px;
+  height: 12px;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  transform: rotate(45deg);
+}

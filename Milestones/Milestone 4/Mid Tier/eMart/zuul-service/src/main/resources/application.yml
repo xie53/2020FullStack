@@ -1,0 +1,53 @@
+server:
+   port: 5555
+spring:
+   application:
+      name: zuul-service
+   main:
+      allow-bean-definition-overriding: true
+   datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/eMart
+      username: root
+      password: 123456
+ribbon:  
+   ReadTimeout: 30000
+   ConnectTimeout: 30000
+zuul:
+   sensitiveHeaders: Access-Control-Allow-Origin,Cookie,Set-Cookie  #配置头部黑名单，它包含Zuul不会传播到下游服务的敏感头部。同时意识着Authorization将被放行
+   ignored-headers: Access-Control-Allow-Origin,H-APP-Id,Token,APPToken
+   ignored-services: '*'
+   prefix: /api
+   host:
+      connect-timeout-millis: 30000
+      socket-timeout-millis: 30000
+   routes:
+      user-service: /user-service/**   #重启机器后要多等一段时间才访问，注册要有三次心跳后才注册成功
+      buyer-service: /buyer-service/**
+      seller-service: /seller-service/**
+      auth-service: /auth-service/**
+
+#      user-service:   #静态路由
+#         path: /user-service/**
+#         url: http://localhost:9080/emart/user
+   #添加代理头
+   add-proxy-headers: true
+hystrix:
+   command:
+      default:
+         execution:
+            isolation:
+               thread:
+                  timeout-in-milliseconds: 30000
+eureka:
+   instance:
+      preferIpAddress: true
+      client: 
+         registerWithEureka: true
+         fetchRegistry: true
+         serviceUrl: 
+            defaultZone: http://localhost:8761/eureka/
+logging:
+   level:
+      com.netflix: DEBUG
+      com.bruin.cloud.zuul.filters: DEBUG
