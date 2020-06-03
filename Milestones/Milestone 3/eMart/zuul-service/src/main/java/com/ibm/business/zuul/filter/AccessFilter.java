@@ -45,6 +45,12 @@ public class AccessFilter extends ZuulFilter{
 //        } else if ("/apigateway/order/api/v1/order/find".equalsIgnoreCase(request.getRequestURI())) {
 //            return false;
 //        }
+//        if ("/auth-service/emart/auth/user".equalsIgnoreCase(request.getRequestURI())) {
+//        	return false;
+//        }
+        if ("/api/auth-service/emart/auth/user".equalsIgnoreCase(request.getRequestURI())) {
+        	return false;
+        }
         
         return true;
 	}
@@ -89,7 +95,7 @@ public class AccessFilter extends ZuulFilter{
 		} else {
 			try {
 				// 使用Token去调用：http://localhost:8901/auth/user，如果能返回User信息，则证明token有效
-				User user = restTempate.getForObject("http://localhost:8901/auth/user", User.class);
+				User user = restTempate.getForObject("http://localhost:9083/emart/auth/user", User.class);
 				// User user = restTempate.getForObject("http://cloud-auth-service/auth/user", User.class);
 				if (user == null) {
 					logger.info("The user is null...");

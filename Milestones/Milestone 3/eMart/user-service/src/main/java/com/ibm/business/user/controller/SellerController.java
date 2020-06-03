@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,8 +53,8 @@ public class SellerController extends BaseController {
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
     public BaseResponse<SellerInfoRes> getBuyerLoginInfo(
-			@RequestParam(value="userName",required = true) @NonNull String userName,
-			@RequestParam(value="password",required = true) @NonNull String password,
+			@RequestParam(value="userName",required = true) String userName,
+			@RequestParam(value="password",required = true) String password,
             HttpServletResponse httpServletResponse) {
 
     	BaseResponse<SellerInfoRes> res = sellerService.sellerLogin(userName, password);
@@ -80,7 +79,7 @@ public class SellerController extends BaseController {
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
     public BaseResponse<SellerInfoRes> postBuyerRegisterInfo(
-			@RequestBody(required = true) @NonNull SellerInfoRes sellerInfoRes,
+			@RequestBody(required = true) SellerInfoRes sellerInfoRes,
             HttpServletResponse httpServletResponse) {
 
     	BaseResponse<SellerInfoRes> res = sellerService.sellerRegister(sellerInfoRes);

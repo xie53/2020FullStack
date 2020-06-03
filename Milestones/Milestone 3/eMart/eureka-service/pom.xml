@@ -3,21 +3,44 @@
   <parent>
     <groupId>com.ibm.business</groupId>
     <artifactId>eMart</artifactId>
-    <version>POC</version>
+	<version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.ibm.business.eureka</groupId>
   <artifactId>eureka-service</artifactId>
   <name>eureka-service</name>
   <description>Eureka Service</description>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<defaultGoal>compile</defaultGoal>
+	</build>
 
+<!-- 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 			<version>1.1.6.RELEASE</version>
 		</dependency>
-	</dependencies>
+		https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka-server
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-eureka-server</artifactId>
+		    <version>1.4.7.RELEASE</version>
+		</dependency>
+	</dependencies> -->
 
 
 </project>

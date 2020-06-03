@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
 Implementation-Title: seller-service
-Implementation-Version: POC
+Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: YongShengXie
 Implementation-Vendor-Id: com.ibm.business.seller
 Build-Jdk: 1.8.0_221
-Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/eMart/seller-service
+Implementation-URL: http://projects.spring.io/spring-boot/eMart/seller
+ -service/
 Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
 

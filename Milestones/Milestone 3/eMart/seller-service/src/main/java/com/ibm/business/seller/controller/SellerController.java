@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +51,7 @@ public class SellerController extends BaseController {
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
     public BaseResponse<ItemsInfoRes> getViewStock(
-			@RequestParam(value="itemName",required = true) @NonNull String itemName,
+			@RequestParam(value="itemName",required = true) String itemName,
             HttpServletResponse httpServletResponse) {
 
     	BaseResponse<ItemsInfoRes> res = sellerService.getViewStock(itemName);
@@ -76,7 +75,7 @@ public class SellerController extends BaseController {
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
     public BaseResponse<ItemsInfoRes> postAddItems(
-			@RequestBody(required = true) @NonNull ItemsInfoRes itemsInfoRes,
+			@RequestBody(required = true) ItemsInfoRes itemsInfoRes,
             HttpServletResponse httpServletResponse) {
 
     	BaseResponse<ItemsInfoRes> res = sellerService.postAddItems(itemsInfoRes);

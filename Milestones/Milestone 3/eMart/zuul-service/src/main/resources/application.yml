@@ -3,6 +3,13 @@ server:
 spring:
    application:
       name: zuul-service
+   main:
+      allow-bean-definition-overriding: true
+   datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/eMart
+      username: root
+      password: 123456
 ribbon:  
    ReadTimeout: 30000
    ConnectTimeout: 30000
@@ -15,11 +22,14 @@ zuul:
       connect-timeout-millis: 30000
       socket-timeout-millis: 30000
    routes:
-      cloud-user-service: /user-service/**   #重启机器后要多等一段时间才访问，注册要有三次心跳后才注册成功
-#      cloud-auth-service: /cloud-auth-service/**
+      auth-service: /auth-service/**
+#      user-service: /user-service/**   #重启机器后要多等一段时间才访问，注册要有三次心跳后才注册成功
+#      buyer-service: /buyer-service/**
+#      seller-service: /seller-service/**
+
 #      user-service:   #静态路由
-#         path: /cloud-simple-service/**
-#         url: http://localhost:8081/
+#         path: /user-service/**
+#         url: http://localhost:9080/emart/user
    #添加代理头
    add-proxy-headers: true
 hystrix:
@@ -31,7 +41,7 @@ hystrix:
                   timeout-in-milliseconds: 30000
 eureka:
    instance:
-      preferIpAddress: true
+      prefer-ip-address: true
       client: 
          registerWithEureka: true
          fetchRegistry: true

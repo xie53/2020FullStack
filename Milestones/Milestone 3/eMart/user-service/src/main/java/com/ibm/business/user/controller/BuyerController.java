@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,8 +51,8 @@ public class BuyerController extends BaseController {
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
     public BaseResponse<BuyerInfoRes> getBuyerLoginInfo(
-			@RequestParam(value="userName",required = true) @NonNull String userName,
-			@RequestParam(value="password",required = true) @NonNull String password,
+			@RequestParam(value="userName",required = true) String userName,
+			@RequestParam(value="password",required = true) String password,
             HttpServletResponse httpServletResponse) {
 
     	BaseResponse<BuyerInfoRes> res = buyerService.buyerLogin(userName, password);
@@ -78,7 +77,7 @@ public class BuyerController extends BaseController {
 			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
 			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
     public BaseResponse<BuyerInfoRes> postBuyerRegisterInfo(
-			@RequestBody(required = true) @NonNull BuyerInfoRes buyerInfoRes,
+			@RequestBody(required = true) BuyerInfoRes buyerInfoRes,
             HttpServletResponse httpServletResponse) {
 
     	BaseResponse<BuyerInfoRes> res = buyerService.buyerRegister(buyerInfoRes);
