@@ -129,7 +129,6 @@
 		<module>seller-service</module>
 		<module>zuul-service</module>
 		<module>eureka-service</module>
-		<module>auth-service</module>
 		<module>auth2-service</module>
  	</modules>
 

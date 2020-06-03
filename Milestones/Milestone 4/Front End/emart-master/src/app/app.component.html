@@ -1,0 +1,14 @@
+<!-- 顶级父组件：定义页面的整体轮廓 -->
+<app-navbar (navClick)="handleNavClick($event)"></app-navbar>
+
+<div class="div-main">
+  <div class="row">
+    <!--  内容区域  -->
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+

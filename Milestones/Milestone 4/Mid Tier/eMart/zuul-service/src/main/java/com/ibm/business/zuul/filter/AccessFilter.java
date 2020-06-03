@@ -45,7 +45,10 @@ public class AccessFilter extends ZuulFilter{
 //        } else if ("/apigateway/order/api/v1/order/find".equalsIgnoreCase(request.getRequestURI())) {
 //            return false;
 //        }
-        
+        if (request.getRequestURI().contains("/auth/oauth/token")) {
+            return false;
+        }
+
         return true;
 	}
 
@@ -75,7 +78,10 @@ public class AccessFilter extends ZuulFilter{
 		String url = request.getRequestURL().toString();
 		// 如果是登录链接，则发起请求
 		// URL: http://localhost:8901/auth/oauth/token?grant_type=password&scope=webclient&username=admin&password=admin
-		if("/auth/oauth/token".equals(url)){
+//		if("/auth/oauth/token".equals(url)){
+//			return null;
+//		}
+		if(url.contains("/auth/oauth/token")){
 			return null;
 		}
 		

@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">eMart</a>
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active list-inline">
+        <a class="nav-link" (click)="viewProducts()">Products</a>
+      </li>
+    </ul>
+    <form class="form-inline mt-2 mt-md-0">
+      <a *ngIf="!isSignin" class="btn btn-primary" (click)="signIn()">Sign in</a>
+<!--      <button *ngIf="!isSignin" class="btn btn-primary" (click)="signIn()" type="submit">Sign in</button>-->
+      <a *ngIf="isSignin" class="btn btn-secondary" (click)="signOut()">Sign Out</a>
+    </form>
+  </div>
+</nav>

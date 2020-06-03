@@ -16,7 +16,7 @@ eureka:
       # 由于启用了evict其实就用不太上改这个配置了
       response-cache-auto-expiration-in-seconds: 60
       # 启用主动失效，并且每次主动失效检测间隔为3s
-      eviction-interval-timer-in-ms: 10000
+      eviction-interval-timer-in-ms: 60000
    client:
       registerWithEureka: false
       fetchRegistry: false
