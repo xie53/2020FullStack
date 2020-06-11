@@ -6,3 +6,21 @@ export interface Product {
   price: number;
   priceDesc: string;
 }
+
+export interface ItemTemp {
+  itemName: string;
+  stockNumber: number;
+  remainNumber: number;
+}
+
+export interface Item {
+  id: string;
+  itemName: string;
+  categoryId: string;
+  subcategoryId: string;
+  price: number;
+  description: string;
+  stockNumber: number;
+  remainNumber: number;
+  remarks: string;
+}

@@ -2,6 +2,8 @@ package com.ibm.business.buyer.bean.req;
 
 public class ItemsInfoRes {
 
+	private String id;
+
 	private String itemName;
 
 	private String categoryId;
@@ -17,6 +19,14 @@ public class ItemsInfoRes {
 	private int remainNumber;
 
 	private String remarks;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getItemName() {
 		return itemName;
@@ -84,7 +94,7 @@ public class ItemsInfoRes {
 
 	@Override
 	public String toString() {
-		return "ItemsInfoRes [itemName=" + itemName + ", categoryId=" + categoryId + ", subcategoryId=" + subcategoryId + 
+		return "ItemsInfoRes [id=" + id + ", itemName=" + itemName + ", categoryId=" + categoryId+ ", subcategoryId=" + subcategoryId + 
 				", price=" + price + ", description=" + description + ", stockNumber=" + stockNumber + ", remainNumber=" + 
 				remainNumber + ", remarks=" + remarks + "]";
 	}

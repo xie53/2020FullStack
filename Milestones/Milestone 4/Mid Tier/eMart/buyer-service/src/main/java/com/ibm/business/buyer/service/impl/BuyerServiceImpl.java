@@ -60,19 +60,21 @@ public class BuyerServiceImpl extends BaseServiceImpl implements BuyerService {
      */
     public BaseResponse<ItemsInfoListRes> searchItemsInfo(String itemName, String category, String subCategory,
 			Double startPrice, Double endPrice) {
-    	List<ItemsInfoRes> itemInformationList = new ArrayList<>();
+    	List<ItemsInfoRes> itemInformationList = new ArrayList<ItemsInfoRes>();
     	ItemsInfoListRes itemsInfoListRes = new ItemsInfoListRes();
 
     	List<Items> itemList = itemsRepository.findItemInfo(itemName, category, subCategory, startPrice, endPrice);
 //    	Optional<Items> itemList = itemsRepository.findItemInfo(itemName, category, subCategory, startPrice, endPrice);
     	
     	Items item = null;
-    	ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
+//    	ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
     	if (itemList.size() == 0) {
-    		return new ErrorResponse<>(ErrorConstant.FAIL_TO_GET_USER_INFO);
+    		return new ErrorResponse<>(ErrorConstant.FAIL_TO_GET_PRODUCT_INFO);
     	} else {
     		for(int i = 0; i < itemList.size(); i++) {
     			item = itemList.get(i);
+    			ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
+    			itemsInfoRes.setId(item.getId());
     			itemsInfoRes.setItemName(item.getItemName());
     			itemsInfoRes.setCategoryId(item.getCategoryId());
     			itemsInfoRes.setSubcategoryId(item.getSubcategoryId());
@@ -90,5 +92,62 @@ public class BuyerServiceImpl extends BaseServiceImpl implements BuyerService {
 
 		return new NormalResponse<ItemsInfoListRes>(itemsInfoListRes);
     }
+    
+	/**
+	 * Get Item Api
+	 */
+	public BaseResponse<ItemsInfoListRes> getItemById(String id) {
+    	List<ItemsInfoRes> itemInformationList = new ArrayList<ItemsInfoRes>();
+    	ItemsInfoListRes itemsInfoListRes = new ItemsInfoListRes();
+
+    	Optional<Items> itemList = itemsRepository.findById(id);
+    	
+    	Items item = null;
+		ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
+
+    	if (!itemList.isPresent()) {
+    		return new ErrorResponse<>(ErrorConstant.FAIL_TO_GET_PRODUCT_INFO);
+    	} else {
+    		item = itemList.get();
+    		itemsInfoRes.setId(item.getId());
+			itemsInfoRes.setItemName(item.getItemName());
+			itemsInfoRes.setCategoryId(item.getCategoryId());
+			itemsInfoRes.setSubcategoryId(item.getSubcategoryId());
+			itemsInfoRes.setPrice(item.getPrice());
+			itemsInfoRes.setDescription(item.getDescription());
+			itemsInfoRes.setStockNumber(item.getStockNumber());
+			itemsInfoRes.setRemainNumber(item.getRemainNumber());
+			itemsInfoRes.setRemarks(item.getRemarks());
+			itemInformationList.add(itemsInfoRes);
+    		
+    	}
+    	
+//    	Items item = null;
+////    	ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
+//    	if (itemList.size() == 0) {
+//    		return new ErrorResponse<>(ErrorConstant.FAIL_TO_GET_PRODUCT_INFO);
+//    	} else {
+//    		for(int i = 0; i < itemList.size(); i++) {
+//    			item = itemList.get(i);
+//    			ItemsInfoRes itemsInfoRes = new ItemsInfoRes();
+//    			itemsInfoRes.setId(item.getId());
+//    			itemsInfoRes.setItemName(item.getItemName());
+//    			itemsInfoRes.setCategoryId(item.getCategoryId());
+//    			itemsInfoRes.setSubcategoryId(item.getSubcategoryId());
+//    			itemsInfoRes.setPrice(item.getPrice());
+//    			itemsInfoRes.setDescription(item.getDescription());
+//    			itemsInfoRes.setStockNumber(item.getStockNumber());
+//    			itemsInfoRes.setRemainNumber(item.getRemainNumber());
+//    			itemsInfoRes.setRemarks(item.getRemarks());
+//    			itemInformationList.add(itemsInfoRes);
+//    		}
+//        }
+
+    	logger.info("### api result: " + itemInformationList);
+    	itemsInfoListRes.setItemInformationList(itemInformationList);
+
+		return new NormalResponse<ItemsInfoListRes>(itemsInfoListRes);
+		
+	}
 
 }

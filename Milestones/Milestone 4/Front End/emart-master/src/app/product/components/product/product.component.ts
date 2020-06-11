@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
       param => {
         this.productId = param.productId;
         // 通过productId获取具体商品详情
+        
       }
     )
   }

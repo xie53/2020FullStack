@@ -19,6 +19,9 @@ zuul:
       socket-timeout-millis: 90000
    routes:
       auth-service: /auth-service/**
+      user-service: /user-service/**
+      seller-service: /seller-service/**
+      buyer-service: /buyer-service/**
 #      user-service:   #静态路由
 #         path: /cloud-simple-service/**
 #         url: http://localhost:8081/

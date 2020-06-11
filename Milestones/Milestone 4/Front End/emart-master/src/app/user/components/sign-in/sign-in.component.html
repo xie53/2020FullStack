@@ -8,19 +8,29 @@
       <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
     </p>
 
-    <!-- bootstrap utilities/screenreaders   -->
     <label for="inputUsername" class="sr-only">User name</label>
     <input ngModel name="name" id="inputUsername" class="form-control" placeholder="UserName" type="text">
 
     <label for="inputPassword" class="sr-only">Password</label>
     <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" >
 
+    <div class="radio">
+      <label><input ngModel type="radio" name="role" value="buyer">Buyer</label>
+    </div>
+    <div class="radio">
+      <label><input ngModel type="radio" name="role" value="seller">Seller</label>
+    </div>
+
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember Me
       </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
 
+    <div class="card-body">
+      <a class="card-link" [routerLink]="['/buyer/signup']">Buy Signup</a>
+      <a class="card-link" [routerLink]="['/seller/signup']">Seller Signup</a>
+    </div>
   </form>
 </div>

@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     if (sessionStorage.getItem('token')) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/sign-in']);
     }
   }
 
@@ -38,11 +38,26 @@ export class SignInComponent implements OnInit {
           console.log(JSON.stringify(data));
           const info: any = data;
           console.log(info.code);
-          console.log(info.access_token);
-          if (200 === info.code) {
+          if ("OK" === info.status) {
+            this.userService.postObtainToken(value).subscribe(
+              data => {
+                // console.log(JSON.stringify(data));
+                const info2: any = data;
+                console.log("xieys2:"+info2.access_token);
+                sessionStorage.setItem('token', info2.access_token);
+              }
+              );
+
               console.log('登录成功，调转详情页');
-              sessionStorage.setItem('token', info.result.token)
-              this.router.navigate(['/home']);
+              // this.router.navigate(['/home']);
+              if ("buyer" === value.role) {
+                this.router.navigate(['/buyer/searchDetail']);
+              } else if ("seller" === value.role) {
+                this.router.navigate(['/seller/inventory']);
+              }
+          } else if(200 != info.code) {
+            console.log('登录失败，弹出MSG');
+            this.alerts.push({type : 'danger', message: 'username or password error!'});
           } else {
             console.log('登录失败，弹出MSG');
             this.alerts.push({type : 'danger', message: 'username or password error!'});
@@ -51,6 +66,7 @@ export class SignInComponent implements OnInit {
       );
     }
   }
+
   /* 验证输入项 */
   validInput(value: any): boolean {
     this.reset();
@@ -67,6 +83,11 @@ export class SignInComponent implements OnInit {
 
     if (value.password.length < 6) {
       this.alerts.push({type : 'danger', message: 'password length must be greater than 6!'});
+      result =  false;
+    }
+
+    if (!value.role) {
+      this.alerts.push({type : 'danger', message: 'choose role required!'});
       result =  false;
     }
     return result;

@@ -8,6 +8,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserModule} from './user/user.module';
 import {ProductModule} from './product/product.module';
 import {HomeModule} from './home/home.module';
+import {SellerModule} from './seller/seller.module';
+import {BuyerModule} from './buyer/buyer.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {HomeModule} from './home/home.module';
     SharedModule,
     UserModule,
     ProductModule,
-    HomeModule
+    HomeModule,
+    SellerModule,
+    BuyerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

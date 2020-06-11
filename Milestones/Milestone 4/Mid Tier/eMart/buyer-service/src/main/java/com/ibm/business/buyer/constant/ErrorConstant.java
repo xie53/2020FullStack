@@ -15,6 +15,7 @@ public enum ErrorConstant {
 	FAIL_TO_GET_SEARCH_USE_ACCESS_TOKEN("E500-002", "Fail to get search use access token"),
 	FAIL_TO_GET_TRANSFER_USE_ACCESS_TOKEN("E500-003", "Fail to get transfer use access token"),
 	FAIL_TO_GET_USER_INFO("E500-003", "Fail to get user info"),
+	FAIL_TO_GET_PRODUCT_INFO("E500-003", "Fail to get product info"),
 	FAIL_TO_UPDATE_USER_INFO("E500-004", "Fail to update user info"),
 	FAIL_TO_SEARCH_BANK_INFO("E500-005", "Fail to search bank info"),
 	FAIL_TO_SEARCH_BRANCH_INFO("E500-006", "Fail to search branch info"),

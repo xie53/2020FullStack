@@ -18,6 +18,11 @@ public interface BuyerService {
 	 */
 	public BaseResponse<ItemsInfoListRes> searchItemsInfo(String itemName, String category, String subCategory,
 			Double startPrice, Double endPrice);
+	
+	/**
+	 * Get Item Api
+	 */
+	public BaseResponse<ItemsInfoListRes> getItemById(String id);
 
 //	/**
 //	 * Search Purchase History Api

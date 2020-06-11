@@ -69,5 +69,33 @@ public class BuyerController extends BaseController {
 		return res;
     }
 
+    /**
+     * Get Item Api
+     * @param itemName
+     * @param category
+     * @param subCategory
+     * @param startPrice
+     * @param endPrice
+     * @param httpServletResponse HTTP
+     * @return　HTTP
+     */
+    @RequestMapping(value = "/getItem", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Get Item Api", notes = "Get Item Api")
+    @ApiImplicitParams(value = {})
+    @ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"), 
+			@ApiResponse(code = 500, message = "ERROR", response = ErrorResponse.class), 
+			@ApiResponse(code = 401, message = "UNAUTHORIZED", response = ErrorResponse.class)})
+    public BaseResponse<ItemsInfoListRes> getItemById(
+			@RequestParam(value="id",required = true) String id,
+            HttpServletResponse httpServletResponse) {
+
+    	BaseResponse<ItemsInfoListRes> res = buyerService.getItemById(id);
+    	
+		setResponseStatus(res, httpServletResponse);
+		logger.info("### api result: " + res.getResult());
+		return res;
+    }
+
 }
 

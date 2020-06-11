@@ -92,27 +92,28 @@ public class AccessFilter extends ZuulFilter{
 			requestContext.setResponseStatusCode(401);
 			requestContext.setResponseBody("Authorization token is empty.");
 			return null;
-		} else {
-			try {
-				// 使用Token去调用：http://localhost:8901/auth/user，如果能返回User信息，则证明token有效
-				User user = restTempate.getForObject("http://localhost:8901/auth/user", User.class);
-				// User user = restTempate.getForObject("http://cloud-auth-service/auth/user", User.class);
-				if (user == null) {
-					logger.info("The user is null...");
-					requestContext.setSendZuulResponse(false);
-					requestContext.setResponseStatusCode(401);
-					requestContext.setResponseBody("Cannot get the user.");
-				}else{
-					logger.info("Login user: " + user);
-				}
-				// TODO 利用返回的权限信息，进行权限校验
-
-				// TODO 如果没有权限，则不请求转发
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		}
+		} 
+//		else {
+//			try {
+//				// 使用Token去调用：http://localhost:8901/auth/user，如果能返回User信息，则证明token有效
+//				User user = restTempate.getForObject("http://localhost:8901/auth/user", User.class);
+//				// User user = restTempate.getForObject("http://cloud-auth-service/auth/user", User.class);
+//				if (user == null) {
+//					logger.info("The user is null...");
+//					requestContext.setSendZuulResponse(false);
+//					requestContext.setResponseStatusCode(401);
+//					requestContext.setResponseBody("Cannot get the user.");
+//				}else{
+//					logger.info("Login user: " + user);
+//				}
+//				// TODO 利用返回的权限信息，进行权限校验
+//
+//				// TODO 如果没有权限，则不请求转发
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//
+//		}
 		
 		logger.info("Authorization token is ok");
 		return null;

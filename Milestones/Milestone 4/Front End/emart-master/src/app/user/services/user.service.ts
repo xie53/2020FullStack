@@ -19,7 +19,26 @@ export class UserService {
   }
 
   postSignIn(user) {
-    return this.http.post(`http://localhost:5555/api/auth-service/auth/oauth/token?grant_type=password&scope=webclient&username=admin&password=admin`, JSON.stringify(user), httpOptions);
+    // console.log("xieys: "+user.role);
+    if ("buyer" === user.role) {
+      // redirect buyerLogin api
+      return this.http.get(`${environment.baseUrl}/user-service/emart/user/buyer/buyerLogin?userName=${user.name}&password=${user.password}`, httpOptions);
+    } else {
+      // redirect sellerLogin api
+      return this.http.get(`${environment.baseUrl}/user-service/emart/user/seller/sellerLogin?userName=${user.name}&password=${user.password}`, httpOptions);
+    }
+  }
+
+  postObtainToken(user) {
+    return this.http.post(`${environment.baseUrl}/auth-service/auth/oauth/token?grant_type=password&scope=webclient&username=user&password=user`, JSON.stringify(user), httpOptions);
+  }
+
+  postBuyerSignUp(user) {
+    return this.http.post(`${environment.baseUrl}/user-service/emart/user/buyer/buyerSignup`, JSON.stringify(user), httpOptions);
+  }
+
+  postSellerSignUp(user) {
+    return this.http.post(`${environment.baseUrl}/user-service/emart/user/seller/sellerSignup`, JSON.stringify(user), httpOptions);
   }
 
 }
