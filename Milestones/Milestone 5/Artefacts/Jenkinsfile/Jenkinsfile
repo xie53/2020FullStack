@@ -1,0 +1,21 @@
+pipeline {
+   agent any
+
+   stages {
+      stage('git clone') {
+         steps {
+            git credentialsId: 'git53', url: 'https://github.com/xie53/2020FullStack.git'
+         }
+      }
+      stage('build microservice') {
+         steps {
+            sh 'mvn clean package'
+         }
+      }
+      stage('deploy war') {
+         steps {
+            deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://127.0.0.1:8089')], contextPath: 'api', war: 'target/*.war'
+         }
+      }
+   }
+}
