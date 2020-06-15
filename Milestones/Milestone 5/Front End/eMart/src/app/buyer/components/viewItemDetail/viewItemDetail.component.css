@@ -1,0 +1,14 @@
+.div-main {
+    margin-top: 20px;
+    margin-left: 30%;
+}
+.product-image {
+    grid-area: image;
+    object-fit: contain;
+    width: 300px;
+    height: 200px;
+  }
+
+.div-desc {
+    margin-top: 220px;
+}

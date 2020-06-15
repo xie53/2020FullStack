@@ -1,0 +1,76 @@
+<div class="container">
+
+  <ul class="nav nav-tabs nav-justified justify-content-center">
+    <!-- <li class="nav-item">
+      <a class="nav-link">Add Sell Item</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">View Item Inventory</a>
+    </li> -->
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/seller/addItem']">Add Sell Item</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/seller/inventory']">View Item Inventory</a>
+    </li>
+  </ul>
+
+  <form class="container1 form-horizontal" #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)" novalidate>
+    <h3 class="mb-6 font-weight-normal">Add Stock Item</h3>
+
+    <p *ngFor="let alert of alerts">
+      <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+    </p>
+    
+    <div class="form-group">
+        <label for="itemName" class="col-sm-4 control-label inline-style font-position-right">Item Name:</label>
+        <div class="col-sm-8 inline-style ">
+          <input ngModel type="text" class="form-control" name="itemName" id="itemName" placeholder="Enter item name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="category" class="col-sm-4 control-label inline-style font-position-right">Category:</label>
+        <div class="col-sm-8 inline-style">
+          <select ngModel name="categoryId" class="form-control" id="category">
+            <option value ="1">Electronic</option>
+            <option value ="2">Fashion</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="subcategory" class="col-sm-4 control-label inline-style font-position-right">Subcategory:</label>
+        <div class="col-sm-8 inline-style">
+          <select ngModel name="subcategoryId" class="form-control" id="subcategory">
+            <option value ="1">Mobile</option>
+            <option value ="2">TV</option>
+            <option value ="3">Laptop</option>
+          </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="price" class="col-sm-4 control-label inline-style font-position-right">Price:</label>
+        <div class="col-sm-8 inline-style">
+          <input ngModel type="text" class="form-control" name="price" id="price" placeholder="Enter price">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="number" class="col-sm-4 control-label inline-style font-position-right">Stock Items:</label>
+        <div class="col-sm-8 inline-style">
+          <input ngModel type="text" class="form-control" name="stockNumber" id="number" placeholder="Enter Stock Items">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="col-sm-4 control-label inline-style font-position-right">Description:</label>
+        <div class="col-sm-8 inline-style">
+          <textarea ngModel class="form-control" name="description" rows="1" id="description" placeholder="Enter item description"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-lg btn-primary btn-block register-btn" type="submit">Save & Sell Item</button>
+        </div>
+    </div>
+  </form>
+
+</div>
